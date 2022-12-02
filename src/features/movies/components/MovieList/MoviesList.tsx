@@ -1,6 +1,6 @@
-import './MoviesList.scss';
 import data from '../../../../utils/data.json'
 import MovieItem from '../MovieItem/MoviesItem';
+
 
 export default function MovieList() {
 
