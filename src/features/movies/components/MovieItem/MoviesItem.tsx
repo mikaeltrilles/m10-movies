@@ -1,7 +1,6 @@
 import style from './MoviesItem.module.scss';
 
-
-console.log(style);
+// console.log(style);
 
 export default function MovieItem({ movie }: any) {
   return (
