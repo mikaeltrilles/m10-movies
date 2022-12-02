@@ -1,12 +1,22 @@
+import { MouseEventHandler } from 'react';
 import style from './MoviesItem.module.scss';
 
-// console.log(style);
+interface MovieItemProps {
+  movie: any;
+  updateSelectedMovie: Function | any;
+}
 
-export default function MovieItem({ movie }: any) {
+export default function MovieItem({
+  movie,
+  updateSelectedMovie
+}: MovieItemProps) {
   return (
-    <div 
-    className={`${style.card} card text-center m-2`}
-    >
+    <div
+      onClick={updateSelectedMovie}
+      style={{ cursor: 'pointer' }}
+      data-bs-target="#movie-details-modal"
+      data-bs-toggle="modal"
+      className={`card text-center m-2 ${style.card}`}>
       <img className="card-img-top" src={movie.img} alt="Affiche du film" />
       <div className="card-body">
         <h5 className="card-title">{movie.title}</h5>
