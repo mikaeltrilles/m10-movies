@@ -6,21 +6,31 @@ import MovieDetails from './features/movies/components/MovieDetails/MovieDetails
 import { Movie } from './features/movies/models/Movie';
 import data from './utils/data.json';
 import MovieList from './features/movies/components/MovieList/MoviesList';
-import { urlApiMovies } from './conf/api.movies';
+import { urlApiMovies, apiMovieMap } from './conf/api.movies';
+import SearchBar from './features/movies/components/SearchBar/SearchBar';
 
 function App() {
   const [movies, setMovies] = useState<Movie[]>([]);
-  const [selectedMovie, setSelectedMovie] = useState<Movie | undefined>(data.movies[0]);
+  const [selectedMovie, setSelectedMovie] = useState<Movie | undefined>(movies[0]);
+
 
 
 
   function getData() {
+
+
     urlApiMovies.get('/discover/movie')
       .then(res => res.data?.results)
       .catch(console.error)
       .then(moviesFromAPI => {
         if (!moviesFromAPI) throw new Error("Pas de fims !");
         console.log(moviesFromAPI);
+        const movies = apiMovieMap(moviesFromAPI);
+
+        console.log(movies);
+
+        setMovies(movies);
+        setSelectedMovie(movies[0]);
       });
   }
 
@@ -29,7 +39,7 @@ function App() {
 
   function updateSelectedMovie(id: string) {
     setSelectedMovie(
-      data.movies.find(m => m._id === id)
+      movies.find(m => m._id === id)
     );
   }
 
@@ -38,8 +48,11 @@ function App() {
       <Header />
       {data.movies.length ? (
         <>
+          <div className="d-flex justify-content-center p-4">
+            <SearchBar />
+          </div>
           <MovieList
-            movies={data.movies}
+            movies={movies}
             updateSelectedMovie={updateSelectedMovie} />
           {selectedMovie && <MovieDetails selectedMovie={selectedMovie} />}
         </>

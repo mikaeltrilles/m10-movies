@@ -1,4 +1,5 @@
 import { Movie } from "../../models/Movie";
+import style from './MovieDetails.module.scss';
 
 interface MovieDetailsProps {
   selectedMovie: Movie;
@@ -12,10 +13,11 @@ export default function MovieDetails({ selectedMovie }: MovieDetailsProps) {
 
           <div className="modal-header">
             <h5 className="modal-title">
-              {selectedMovie?.title}
+              {selectedMovie?.title} <small>({selectedMovie?.original})</small>
             </h5>
             <button type="button" className="btn-close" data-bs-dismiss="modal" ></button>
           </div>
+            <img src={selectedMovie?.poster} style={style} alt="" />
 
           <div className="modal-body">
             <h5>{selectedMovie?.details}</h5>
