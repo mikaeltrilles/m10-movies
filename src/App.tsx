@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.module.scss';
 import Header from './components/Header/Header';
 import Loading from './components/Loading/Loading';
@@ -6,10 +6,26 @@ import MovieDetails from './features/movies/components/MovieDetails/MovieDetails
 import { Movie } from './features/movies/models/Movie';
 import data from './utils/data.json';
 import MovieList from './features/movies/components/MovieList/MoviesList';
+import { urlApiMovies } from './conf/api.movies';
 
 function App() {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [selectedMovie, setSelectedMovie] = useState<Movie | undefined>(data.movies[0]);
+
+
+
+  function getData() {
+    urlApiMovies.get('/discover/movie')
+      .then(res => res.data?.results)
+      .catch(console.error)
+      .then(moviesFromAPI => {
+        if (!moviesFromAPI) throw new Error("Pas de fims !");
+        console.log(moviesFromAPI);
+      });
+  }
+
+  useEffect(getData, []);
+
 
   function updateSelectedMovie(id: string) {
     setSelectedMovie(
