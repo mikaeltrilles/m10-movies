@@ -14,7 +14,7 @@ export default function MovieDetails({ selectedMovie }: MovieDetailsProps) {
             <h5 className="modal-title">
               {selectedMovie?.title}
             </h5>
-            <button type="button" className="btn-close"></button>
+            <button type="button" className="btn-close" data-bs-dismiss="modal" ></button>
           </div>
 
           <div className="modal-body">
