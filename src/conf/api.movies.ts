@@ -33,6 +33,6 @@ export const apiMovieMap = (moviesFromAPI: any[]) =>moviesFromAPI.map((m: any) =
   `https://image.tmdb.org/t/p/w500${m.backdrop_path}`,
   String(m.original_title),
   m.genre_ids.map((g: any) => g.name).join(','),
-  m.duree,
+  m.runtime,
 
 ));

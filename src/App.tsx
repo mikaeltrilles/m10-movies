@@ -9,17 +9,16 @@ import MovieList from './features/movies/components/MovieList/MoviesList';
 import { urlApiMovies, apiMovieMap } from './conf/api.movies';
 import SearchBar from './features/movies/components/SearchBar/SearchBar';
 
+
+
+
 function App() {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [selectedMovie, setSelectedMovie] = useState<Movie | undefined>(movies[0]);
 
 
-
-
   function getData() {
-
-
-    urlApiMovies.get('/discover/movie')
+    urlApiMovies.get('/discover/movie/?language=fr-FR')
       .then(res => res.data?.results)
       .catch(console.error)
       .then(moviesFromAPI => {
@@ -33,7 +32,6 @@ function App() {
         setSelectedMovie(movies[0]);
       });
   }
-
   useEffect(getData, []);
 
 
@@ -49,7 +47,7 @@ function App() {
       {data.movies.length ? (
         <>
           <div className="d-flex justify-content-center p-4">
-            <SearchBar />
+            <SearchBar setMovies={setMovies} />
           </div>
           <MovieList
             movies={movies}

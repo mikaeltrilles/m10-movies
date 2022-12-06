@@ -1,4 +1,4 @@
-import { MouseEventHandler } from 'react';
+// import { MouseEventHandler } from 'react';
 import style from './MoviesItem.module.scss';
 
 interface MovieItemProps {

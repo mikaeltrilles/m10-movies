@@ -16,6 +16,7 @@ export default function MovieDetails({ selectedMovie }: MovieDetailsProps) {
               {selectedMovie?.title} <small>({selectedMovie?.original})</small>
             </h5>
             <button type="button" className="btn-close" data-bs-dismiss="modal" ></button>
+            {/* <p>{selectedMovie?.genres.join(' • ')}</p> */}
           </div>
             <img src={selectedMovie?.poster} style={style} alt="" />
 

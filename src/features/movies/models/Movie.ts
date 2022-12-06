@@ -7,7 +7,7 @@ export class Movie {
     public img: string,
     public poster: string,
     public original: string,
-    public genres: string,
+    public genres: string[],
     public duree: number,
   ) {}
 }
